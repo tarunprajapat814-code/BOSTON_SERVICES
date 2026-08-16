@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tarunprajapat814-code.github.io/BOSTON_SERVICES/sitemap.xml
