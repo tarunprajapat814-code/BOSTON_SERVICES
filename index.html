@@ -70,10 +70,9 @@
     opacity:0.55; pointer-events:none;
   }
   .hero-grid{
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
-    position:relative; z-index:2;
+    display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
+    position:relative; z-index:2; max-width:760px;
   }
-  @media(max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     background:var(--blue-light); color:var(--blue-deep);
@@ -502,32 +501,7 @@
         <div class="hero-stat"><b>25 Yrs</b><span>Panel Performance Warranty</span></div>
       </div>
     </div>
-
-    <div class="calc-card" id="quick-calc">
-      <h3>Subsidy Calculator</h3>
-      <div class="sub">Apne system size ke hisaab se estimated subsidy dekhe</div>
-
-      <div class="calc-slider-row">
-        <label>System Size <span class="val mono" id="heroKwVal">3 kW</span></label>
-        <input type="range" id="heroKwSlider" min="1" max="10" step="1" value="3">
-      </div>
-
-      <div class="calc-result">
-        <div class="calc-result-row">
-          <span class="label">Estimated system cost</span>
-          <span class="amt" id="heroCostVal">₹1,90,000</span>
-        </div>
-        <div class="calc-result-row">
-          <span class="label">Central subsidy (PM Surya Ghar)</span>
-          <span class="amt" id="heroSubsidyVal">₹78,000</span>
-        </div>
-        <div class="calc-result-row total">
-          <span class="label">Aapki net cost</span>
-          <span class="amt" id="heroNetVal">₹1,12,000</span>
-        </div>
-      </div>
-      <div class="calc-note">*Quick estimate. Poora savings, subsidy aur EMI calculator neeche dekhe. <a href="#calculator" style="color:var(--blue-deep); text-decoration:underline;">Full Calculator &rarr;</a></div>
-    </div>
+  </div>
   </div>
 </section>
 
@@ -940,33 +914,6 @@
 </div>
 
 <script>
-  // Quick hero subsidy calculator logic
-  const heroKwSlider = document.getElementById('heroKwSlider');
-  const heroKwVal = document.getElementById('heroKwVal');
-  const heroCostVal = document.getElementById('heroCostVal');
-  const heroSubsidyVal = document.getElementById('heroSubsidyVal');
-  const heroNetVal = document.getElementById('heroNetVal');
-
-  function formatINR(num){
-    return '₹' + Math.round(num).toLocaleString('en-IN');
-  }
-  function calcSubsidy(kw){
-    if(kw <= 2) return kw * 30000;
-    if(kw === 3) return 60000 + 18000;
-    return 78000; // capped above 3kW
-  }
-  function updateHero(){
-    const kw = parseInt(heroKwSlider.value);
-    heroKwVal.textContent = kw + ' kW';
-    const cost = kw * 63000; // approx per-kW market cost, editable
-    const subsidy = calcSubsidy(kw);
-    heroCostVal.textContent = formatINR(cost);
-    heroSubsidyVal.textContent = formatINR(subsidy);
-    heroNetVal.textContent = formatINR(cost - subsidy);
-  }
-  heroKwSlider.addEventListener('input', updateHero);
-  updateHero();
-
 // ===== Boston Solar full calculator dashboard =====
   (function(){
     const $ = id => document.getElementById(id);
