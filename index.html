@@ -1097,6 +1097,11 @@
       const price = parseFloat(priceSlider.value);
       priceBig.textContent = inr(price);
 
+      // Subsidy for the investment card is derived from the System Price itself
+      // (1kW→₹30,000, 2kW→₹60,000, 3kW & above→₹78,000), so it auto-updates as the price slider moves.
+      const kwFromPrice = Math.max(1, Math.round(price / COST_PER_KW));
+      const investmentSubsidy = subsidyForKW(kwFromPrice);
+
       const paybackYears = (price - subsidy) / (savings*12);
       paybackOut.textContent = (paybackYears>0 ? paybackYears.toFixed(1) : '0.0') + ' years';
 
@@ -1121,7 +1126,7 @@
 
       bdPrice.textContent = inr(price);
       bdDown.textContent = '– ' + inr(down);
-      const subsidyApplied = subsidyToggle.checked ? subsidy : 0;
+      const subsidyApplied = subsidyToggle.checked ? investmentSubsidy : 0;
       bdSubsidy.textContent = '– ' + inr(subsidyApplied);
       const financeAmount = Math.max(0, price - down - subsidyApplied);
       bdFinance.textContent = inr(financeAmount);
