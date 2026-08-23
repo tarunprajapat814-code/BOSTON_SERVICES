@@ -1109,8 +1109,8 @@
         applyLang(current === 'hi' ? 'en' : 'hi');
       });
     }
-    let saved = 'hi';
-    try{ saved = localStorage.getItem('bs_lang') || 'hi'; }catch(e){}
+    let saved = 'en';
+    try{ saved = localStorage.getItem('bs_lang') || 'en'; }catch(e){}
     applyLang(saved);
   })();
 
