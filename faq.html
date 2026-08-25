@@ -30,7 +30,7 @@
 
   /* ---------- HEADER ---------- */
   header{position:fixed; top:0; left:0; right:0; width:100%; z-index:999; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border);}
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; max-width:1140px; margin:0 auto;}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; max-width:1140px; margin:0 auto; position:relative;}
   .logo img{height:170px; width:auto; display:block;}
   .nav-links{display:flex; gap:26px; font-weight:500; font-size:0.92rem;}
   .nav-links a{color:var(--blue-navy); transition:color .2s;}
@@ -58,7 +58,18 @@
   .lang-toggle:hover::after, .lang-toggle:hover::before{ opacity:1; visibility:visible; }
   @media(max-width:640px){ .lang-toggle{padding:8px 12px; font-size:0.8rem;} }
   .menu-btn{display:none; background:none; border:none; font-size:1.6rem; color:var(--blue-deep); cursor:pointer;}
-  @media(max-width:900px){ .nav-links{display:none;} .menu-btn{display:block;} }
+  @media(max-width:900px){
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0; background:#0A1420; border-top:1px solid rgba(255,255,255,0.08);
+      padding:8px 24px 16px; box-shadow:0 20px 40px -20px rgba(0,0,0,0.6);
+    }
+    .nav-links a{ padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .nav-links.mobile-open{ display:flex; }
+    .menu-btn{display:block;}
+    .logo{ padding:6px 12px; }
+    .logo img{ height:70px !important; }
+  }
 
   /* ---------- HERO ---------- */
   .hero{background:linear-gradient(180deg,#F5FAFD 0%, var(--white) 100%); padding:64px 0 48px; text-align:center;}
@@ -278,6 +289,24 @@
 </footer>
 
 <script>
+  // ===== Mobile hamburger menu toggle =====
+  (function(){
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    if(menuBtn && navLinks){
+      menuBtn.addEventListener('click', ()=>{
+        const isOpen = navLinks.classList.toggle('mobile-open');
+        menuBtn.textContent = isOpen ? '✕' : '☰';
+      });
+      navLinks.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click', ()=>{
+          navLinks.classList.remove('mobile-open');
+          menuBtn.textContent = '☰';
+        });
+      });
+    }
+  })();
+
   // ===== Compensate body spacing for fixed header =====
   (function(){
     function setHeaderSpacing(){
