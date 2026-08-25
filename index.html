@@ -510,11 +510,14 @@
   .sc-emi-val{font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:800; color:var(--sc-accent);}
 
   .sc-banks-card{max-height:none;}
-  .sc-bank-list{display:flex; flex-direction:column; gap:2px; margin-top:16px; max-height:520px; overflow-y:auto; padding-right:4px;}
+  .sc-bank-list{display:flex; flex-direction:column; gap:2px; margin-top:16px; max-height:560px; overflow-y:auto; padding-right:4px;}
+  .sc-bank-item{border-bottom:1px solid var(--sc-border);}
   .sc-bank-row{
     display:flex; align-items:center; gap:12px; padding:12px 6px; border-left:3px solid transparent;
-    border-bottom:1px solid var(--sc-border);
+    width:100%; background:none; border-top:none; border-right:none; border-bottom:none; cursor:pointer;
+    font-family:'Inter',sans-serif; text-align:left;
   }
+  .sc-bank-row:hover{ background:rgba(255,255,255,0.03); }
   .sc-bank-badge{
     width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center;
     font-size:0.68rem; font-weight:800; color:white; flex:none;
@@ -525,7 +528,31 @@
   .sc-bank-rate{display:flex; flex-direction:column; align-items:flex-end; flex:none;}
   .sc-bank-pct{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.92rem; color:var(--sc-text);}
   .sc-bank-emi{font-size:0.7rem; color:var(--sc-muted);}
+  .sc-bank-chevron{flex:none; transition:transform .2s ease;}
+  .sc-bank-item.open .sc-bank-chevron{transform:rotate(180deg);}
   .sc-bank-footnote{font-size:0.72rem; color:var(--sc-muted); margin-top:14px;}
+
+  /* ---------- BANK EXPANDED DETAILS ---------- */
+  .sc-bank-details{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+    background:rgba(255,255,255,0.02);
+  }
+  .sc-bank-item.open .sc-bank-details{ max-height:280px; }
+  .sc-bank-detail-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+    padding:16px 14px 4px;
+  }
+  .sc-bank-detail-grid > div{display:flex; flex-direction:column; gap:4px;}
+  .sc-bd-label{font-size:0.7rem; color:var(--sc-muted);}
+  .sc-bd-val{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.95rem; color:var(--sc-text);}
+  .sc-bd-green{color:#22C55E;}
+  .sc-bank-features{list-style:none; padding:12px 14px 16px; display:grid; gap:8px;}
+  .sc-bank-features li{
+    font-size:0.8rem; color:var(--sc-muted); padding-left:22px; position:relative;
+  }
+  .sc-bank-features li::before{
+    content:'✓'; position:absolute; left:0; top:0; color:#22C55E; font-weight:700; font-size:0.8rem;
+  }
 
   /* subsidy table (dark) */
   .sc-subsidy-card{margin-bottom:20px;}
@@ -1249,12 +1276,18 @@
 
     function renderBanks(financeAmount, tenureYears){
       bankListEl.innerHTML = '';
-      banks.forEach(b=>{
+      banks.forEach((b, idx)=>{
         const emi = emiFor(financeAmount, b.rate, tenureYears);
-        const row = document.createElement('div');
-        row.className = 'sc-bank-row';
-        row.style.borderLeftColor = b.color;
-        row.innerHTML = `
+        const aboveRate = Math.round((b.rate + 2.75) * 100) / 100;
+
+        const item = document.createElement('div');
+        item.className = 'sc-bank-item';
+
+        const header = document.createElement('button');
+        header.type = 'button';
+        header.className = 'sc-bank-row';
+        header.style.borderLeftColor = b.color;
+        header.innerHTML = `
           <div class="sc-bank-badge" style="background:${b.color}">${b.code}</div>
           <div class="sc-bank-info">
             <span class="sc-bank-name">${b.name}</span>
@@ -1263,10 +1296,36 @@
           <div class="sc-bank-rate">
             <span class="sc-bank-pct">${b.rate.toFixed(2)}%</span>
             <span class="sc-bank-emi">${inr(emi)}/mo</span>
-          </div>`;
-        bankListEl.appendChild(row);
+          </div>
+          <svg class="sc-bank-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FB4C8" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>`;
+
+        const details = document.createElement('div');
+        details.className = 'sc-bank-details';
+        details.innerHTML = `
+          <div class="sc-bank-detail-grid">
+            <div><span class="sc-bd-label">&le;&#8377;2L</span><span class="sc-bd-val sc-bd-green">${b.rate.toFixed(2)}%</span></div>
+            <div><span class="sc-bd-label">&gt;&#8377;2L</span><span class="sc-bd-val">${aboveRate.toFixed(2)}%</span></div>
+            <div><span class="sc-bd-label">Max tenure</span><span class="sc-bd-val">10 yrs</span></div>
+          </div>
+          <ul class="sc-bank-features">
+            <li>Lowest rate at ${b.rate.toFixed(2)}%</li>
+            <li>Available on Jan Samarth</li>
+            <li>Processing fee: Nil</li>
+            <li>Collateral-free up to &#8377;2 Lakhs</li>
+          </ul>`;
+
+        header.addEventListener('click', ()=>{
+          const isOpen = item.classList.contains('open');
+          bankListEl.querySelectorAll('.sc-bank-item.open').forEach(i=> i.classList.remove('open'));
+          if(!isOpen) item.classList.add('open');
+        });
+
+        item.appendChild(header);
+        item.appendChild(details);
+        bankListEl.appendChild(item);
       });
     }
+
 
     function renderTicks(min, max){
       tickRow.innerHTML = '';
