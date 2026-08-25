@@ -29,7 +29,8 @@
   @media(max-width:640px){ section{padding:44px 0;} }
 
   /* ---------- HEADER ---------- */
-  header{position:fixed; top:0; left:0; right:0; width:100%; z-index:999; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border);}
+  html, body{ overflow-x:hidden; max-width:100vw; }
+  header{position:sticky; top:0; z-index:999; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border);}
   .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; max-width:1140px; margin:0 auto; position:relative;}
   .logo img{height:170px; width:auto; display:block;}
   .nav-links{display:flex; gap:26px; font-weight:500; font-size:0.92rem;}
@@ -305,17 +306,6 @@
         });
       });
     }
-  })();
-
-  // ===== Compensate body spacing for fixed header =====
-  (function(){
-    function setHeaderSpacing(){
-      const header = document.querySelector('header');
-      if(header) document.body.style.paddingTop = header.offsetHeight + 'px';
-    }
-    setHeaderSpacing();
-    window.addEventListener('resize', setHeaderSpacing);
-    window.addEventListener('load', setHeaderSpacing);
   })();
 
   // ===== Language toggle (Hindi / English) =====
