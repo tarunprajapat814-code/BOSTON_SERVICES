@@ -117,6 +117,36 @@
     margin-bottom:20px;
   }
   .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold);}
+
+  /* ---------- COUNTDOWN TIMER ---------- */
+  .countdown-box{
+    margin:18px 0 26px;
+    display:inline-block;
+    background:linear-gradient(135deg, #16213A 0%, #101B2E 100%);
+    border:1.5px solid rgba(242,169,59,0.35);
+    border-radius:16px;
+    padding:16px 22px;
+    box-shadow:0 12px 34px -16px rgba(242,169,59,0.35);
+  }
+  .countdown-label{
+    font-size:0.82rem; font-weight:800; color:var(--gold);
+    text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;
+  }
+  .countdown-timer{ display:flex; align-items:center; gap:10px; }
+  .cd-unit{ display:flex; flex-direction:column; align-items:center; min-width:52px; }
+  .cd-num{
+    font-family:'JetBrains Mono',monospace; font-weight:800; font-size:1.9rem;
+    color:#F4F8FC; line-height:1; background:rgba(255,255,255,0.05);
+    padding:8px 10px; border-radius:10px; min-width:56px; text-align:center;
+  }
+  .cd-label{ font-size:0.68rem; color:#9FB4C8; margin-top:6px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+  .cd-sep{ font-weight:800; font-size:1.6rem; color:var(--gold); margin-top:-18px; }
+  @media(max-width:520px){
+    .cd-num{ font-size:1.4rem; min-width:44px; padding:6px 8px; }
+    .cd-unit{ min-width:44px; }
+    .countdown-timer{ gap:6px; }
+  }
+
   .hero h1{
     font-size:2.85rem; font-weight:800; line-height:1.12; color:var(--blue-navy);
     letter-spacing:-0.5px;
@@ -579,6 +609,19 @@
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow"><span class="dot"></span> <span data-hi="MNRE Empanelled · PM Surya Ghar Registered Vendor" data-en="MNRE Empanelled · PM Surya Ghar Registered Vendor">MNRE Empanelled &nbsp;·&nbsp; PM Surya Ghar Registered Vendor</span></div>
+
+      <div class="countdown-box">
+        <div class="countdown-label" data-hi="⚡ PM Surya Ghar Subsidy Offer khatam hone mein" data-en="⚡ PM Surya Ghar Subsidy Offer Ends In">⚡ PM Surya Ghar Subsidy Offer Ends In</div>
+        <div class="countdown-timer" id="countdownTimer">
+          <div class="cd-unit"><span class="cd-num" id="cdDays">00</span><span class="cd-label" data-hi="Din" data-en="Days">Days</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cdHours">00</span><span class="cd-label" data-hi="Ghante" data-en="Hours">Hours</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cdMins">00</span><span class="cd-label" data-hi="Minute" data-en="Min">Min</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cdSecs">00</span><span class="cd-label" data-hi="Second" data-en="Sec">Sec</span></div>
+        </div>
+      </div>
       <h1 data-hi="Apni chhat ko <span>bijli ka bill zero</span> karne ka zariya banaye" data-en="Turn your rooftop into a way to make your <span>electricity bill zero</span>">Apni chhat ko <span>bijli ka bill zero</span> karne ka zariya banaye</h1>
       <p class="lead" data-hi="Ghar ya dukaan par rooftop solar lagwaye PM Surya Ghar Muft Bijli Yojana ke through — subsidy paperwork se lekar installation aur net-metering tak, sab hum sambhalte hai." data-en="Install rooftop solar for your home or shop through the PM Surya Ghar Free Electricity Scheme — from subsidy paperwork to installation and net-metering, we handle everything.">Ghar ya dukaan par rooftop solar lagwaye PM Surya Ghar Muft Bijli Yojana ke through — subsidy paperwork se lekar installation aur net-metering tak, sab hum sambhalte hai.</p>
       <div class="hero-actions">
@@ -1067,6 +1110,35 @@
 </div>
 
 <script>
+  // ===== Subsidy deadline countdown timer =====
+  (function(){
+    const deadline = new Date('2027-03-31T23:59:59').getTime();
+    const dEl = document.getElementById('cdDays');
+    const hEl = document.getElementById('cdHours');
+    const mEl = document.getElementById('cdMins');
+    const sEl = document.getElementById('cdSecs');
+    if(!dEl) return;
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const now = Date.now();
+      let diff = deadline - now;
+      if(diff <= 0){
+        dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+        return;
+      }
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const mins = Math.floor((diff / (1000*60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      dEl.textContent = pad(days);
+      hEl.textContent = pad(hours);
+      mEl.textContent = pad(mins);
+      sEl.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
   // ===== Hero background video crossfade cycle =====
   (function(){
     const vidA = document.getElementById('heroVidA');
