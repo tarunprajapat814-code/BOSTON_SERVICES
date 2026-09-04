@@ -8,14 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blue-deep:#3D6B87;
-    --blue-navy:#1F3B52;
-    --blue-light:#F0F5F8;
-    --gold:#DDA35F;
-    --gold-dark:#BC8544;
+    --blue-deep:#123B63;
+    --blue-navy:#081B33;
+    --blue-light:#EAF2FB;
+    --gold:#0EA5FF;
+    --gold-dark:#0066FF;
     --white:#FFFFFF;
-    --muted:#6E8598;
-    --border:#E3E9ED;
+    --muted:#5C7893;
+    --border:#D7E6F5;
     --radius:14px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -44,7 +44,7 @@
     color:var(--blue-deep); padding:8px 16px; border-radius:999px; font-weight:600; font-size:0.88rem;
     cursor:pointer; font-family:'Inter',sans-serif; margin-right:4px;
   }
-  .lang-toggle:hover{border-color:var(--blue-deep);}
+  .lang-toggle:hover{border-color:var(--gold-dark);}
   .lang-toggle{position:relative;}
   .lang-toggle::after{
     content:attr(data-tooltip); position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%);
@@ -74,7 +74,7 @@
 
   /* ---------- HERO ---------- */
   .hero{background:linear-gradient(180deg,#F5FAFD 0%, var(--white) 100%); padding:64px 0 48px; text-align:center;}
-  .eyebrow{display:inline-flex; align-items:center; gap:8px; background:var(--blue-light); color:var(--blue-deep); padding:6px 14px; border-radius:999px; font-size:0.82rem; font-weight:600; margin-bottom:20px;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; background:var(--blue-light); color:var(--gold-dark); padding:6px 14px; border-radius:999px; font-size:0.82rem; font-weight:600; margin-bottom:20px;}
   .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold);}
   .hero h1{font-size:2.3rem; font-weight:800; line-height:1.2; color:var(--blue-navy); max-width:640px; margin:0 auto;}
   @media(max-width:640px){ .hero h1{font-size:1.7rem;} }
@@ -111,7 +111,7 @@
   .btn{padding:14px 26px; border-radius:10px; font-weight:600; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; border:none; cursor:pointer;}
   .btn-primary{background:var(--gold); color:var(--blue-navy); box-shadow:0 8px 20px -8px rgba(242,169,59,0.7);}
   .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-  .btn-outline{background:var(--white); color:var(--blue-deep); border:1.5px solid var(--border);}
+  .btn-outline{background:var(--white); color:var(--gold-dark); border:1.5px solid var(--border);}
 
   /* ---------- FOOTER ---------- */
   footer{background:var(--blue-navy); color:rgba(255,255,255,0.7); padding:36px 0; font-size:0.85rem;}
@@ -168,7 +168,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">01</span><span data-hi="Solar lagane mein kitna kharch aata hai?" data-en="How much does it cost to install solar?">Solar lagane mein kitna kharch aata hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="System size par depend karta hai — ghar ke liye typically 1kW se 5kW tak ka system common hai. Approx cost ₹55,000–₹65,000 per kW hoti hai, lekin <b>PM Surya Ghar subsidy</b> (₹30,000 se ₹78,000 tak) minus hone ke baad aapki actual investment kaafi kam ho jati hai. Exact amount jaanne ke liye humara <a href='index.html#calculator' style='color:var(--blue-deep); text-decoration:underline;'>Subsidy Calculator</a> use kare ya free site survey book kare." data-en="It depends on system size — a 1kW to 5kW system is typical for homes. Approximate cost is ₹55,000–₹65,000 per kW, but after the <b>PM Surya Ghar subsidy</b> (₹30,000 to ₹78,000) is deducted, your actual investment is much lower. Use our <a href='index.html#calculator' style='color:var(--blue-deep); text-decoration:underline;'>Subsidy Calculator</a> for an exact estimate, or book a free site survey.">
           System size par depend karta hai — ghar ke liye typically 1kW se 5kW tak ka system common hai. Approx cost ₹55,000–₹65,000 per kW hoti hai, lekin <b>PM Surya Ghar subsidy</b> (₹30,000 se ₹78,000 tak) minus hone ke baad aapki actual investment kaafi kam ho jati hai. Exact amount jaanne ke liye humara <a href="index.html#calculator" style="color:var(--blue-deep); text-decoration:underline;">Subsidy Calculator</a> use kare ya free site survey book kare.
@@ -178,7 +178,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">02</span><span data-hi="3 kW solar kitni bijli banata hai?" data-en="How much electricity does a 3 kW solar system generate?">3 kW solar kitni bijli banata hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Rajasthan jaisi excellent-sun region mein 3 kW system roughly <b>12–13 units/day</b> generate karta hai, matlab lagbhag <b>360–400 units/month</b>. Ye output weather aur season ke hisaab se thoda upar-neeche ho sakta hai." data-en="In an excellent-sun region like Rajasthan, a 3 kW system generates roughly <b>12–13 units/day</b>, which is about <b>360–400 units/month</b>. This output can vary slightly depending on weather and season.">
           Rajasthan jaisi excellent-sun region mein 3 kW system roughly <b>12–13 units/day</b> generate karta hai, matlab lagbhag <b>360–400 units/month</b>. Ye output weather aur season ke hisaab se thoda upar-neeche ho sakta hai.
@@ -188,7 +188,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">03</span><span data-hi="Solar lagane ke baad bill kitna aayega?" data-en="How much will my bill be after installing solar?">Solar lagane ke baad bill kitna aayega?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Agar aapka system aapki monthly consumption ke hisaab se sahi size ka hai, toh bill <b>almost zero ya sirf fixed/minimum charges</b> tak reduce ho jata hai. Net metering ki wajah se agar aap zyada bijli banate hai toh extra units grid ko export hoke agle bill mein credit hoti hai." data-en="If your system is correctly sized for your monthly consumption, your bill drops to <b>almost zero or just fixed/minimum charges</b>. Thanks to net metering, if you generate excess electricity, the extra units are exported to the grid and credited on your next bill.">
           Agar aapka system aapki monthly consumption ke hisaab se sahi size ka hai, toh bill <b>almost zero ya sirf fixed/minimum charges</b> tak reduce ho jata hai. Net metering ki wajah se agar aap zyada bijli banate hai toh extra units grid ko export hoke agle bill mein credit hoti hai.
@@ -198,7 +198,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">04</span><span data-hi="PM Surya Ghar subsidy kaise milegi?" data-en="How do I get the PM Surya Ghar subsidy?">PM Surya Ghar subsidy kaise milegi?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Subsidy PM Surya Ghar national portal par registration, DISCOM approval aur installation verification ke baad seedha aapke bank account mein aati hai. Ye poora paperwork process — registration se lekar final approval tak — <b>Boston Services Solar khud handle karti hai</b>, aapko sirf documents provide karne hote hai." data-en="The subsidy is credited directly to your bank account after registration on the PM Surya Ghar national portal, DISCOM approval, and installation verification. <b>Boston Services Solar handles the entire paperwork process</b> — from registration to final approval — you just need to provide the documents.">
           Subsidy PM Surya Ghar national portal par registration, DISCOM approval aur installation verification ke baad seedha aapke bank account mein aati hai. Ye poora paperwork process — registration se lekar final approval tak — <b>Boston Services Solar khud handle karti hai</b>, aapko sirf documents provide karne hote hai.
@@ -208,7 +208,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">05</span><span data-hi="Net Metering kya hai?" data-en="What is Net Metering?">Net Metering kya hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Net metering ek special bi-directional meter hai jo dono track karta hai — aap grid se kitni bijli le rahe hai aur apni solar se kitni extra bijli grid ko de rahe hai. Extra units automatically aapke bill mein credit ho jati hai, jisse overall bill aur kam ho jata hai." data-en="Net metering is a special bi-directional meter that tracks both — how much electricity you draw from the grid, and how much extra electricity your solar sends back to the grid. Extra units are automatically credited on your bill, further reducing your overall cost.">
           Net metering ek special bi-directional meter hai jo dono track karta hai — aap grid se kitni bijli le rahe hai aur apni solar se kitni extra bijli grid ko de rahe hai. Extra units automatically aapke bill mein credit ho jati hai, jisse overall bill aur kam ho jata hai.
@@ -218,7 +218,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">06</span><span data-hi="Solar panel ki life kitni hoti hai?" data-en="What is the lifespan of a solar panel?">Solar panel ki life kitni hoti hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Quality panels ki performance warranty typically <b>25 years</b> tak hoti hai. Panels ka output slowly degrade hota hai (roughly 0.5% per year), matlab 25 saal baad bhi wo apni original capacity ka lagbhag 80-85% generate karte rehte hai." data-en="Quality panels typically come with a <b>25-year</b> performance warranty. Panel output degrades slowly (roughly 0.5% per year), meaning even after 25 years they still generate about 80-85% of their original capacity.">
           Quality panels ki performance warranty typically <b>25 years</b> tak hoti hai. Panels ka output slowly degrade hota hai (roughly 0.5% per year), matlab 25 saal baad bhi wo apni original capacity ka lagbhag 80-85% generate karte rehte hai.
@@ -228,7 +228,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">07</span><span data-hi="Maintenance kitni aati hai?" data-en="How much maintenance is required?">Maintenance kitni aati hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Rooftop solar mein maintenance minimal hoti hai — mainly periodic panel cleaning (dust/dirt hatane ke liye) aur saal mein ek-do baar general health check. Boston Services affordable AMC (Annual Maintenance Contract) plans bhi offer karti hai jisse aapko kuch alag se sochna nahi padta." data-en="Rooftop solar requires minimal maintenance — mainly periodic panel cleaning (to remove dust/dirt) and a general health check once or twice a year. Boston Services also offers affordable AMC (Annual Maintenance Contract) plans so you don't have to worry about it separately.">
           Rooftop solar mein maintenance minimal hoti hai — mainly periodic panel cleaning (dust/dirt hatane ke liye) aur saal mein ek-do baar general health check. Boston Services affordable AMC (Annual Maintenance Contract) plans bhi offer karti hai jisse aapko kuch alag se sochna nahi padta.
@@ -238,7 +238,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">08</span><span data-hi="Cloudy/rainy weather mein solar kaam karta hai?" data-en="Does solar work in cloudy/rainy weather?">Cloudy/rainy weather mein solar kaam karta hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Haan, panels cloudy ya rainy din mein bhi bijli banate hai — bas output thoda kam (roughly 10-25%) ho jata hai diffused sunlight ki wajah se. Kyunki aapka system grid-connected hota hai, kam generation wale din grid se seedha bijli mil jati hai, koi disruption nahi hota." data-en="Yes, panels generate electricity even on cloudy or rainy days — output just drops slightly (roughly 10-25%) due to diffused sunlight. Since your system is grid-connected, you get electricity directly from the grid on low-generation days, with no disruption.">
           Haan, panels cloudy ya rainy din mein bhi bijli banate hai — bas output thoda kam (roughly 10-25%) ho jata hai diffused sunlight ki wajah se. Kyunki aapka system grid-connected hota hai, kam generation wale din grid se seedha bijli mil jati hai, koi disruption nahi hota.
@@ -248,7 +248,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">09</span><span data-hi="Roof par kitni jagah chahiye?" data-en="How much roof space is required?">Roof par kitni jagah chahiye?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Roughly <b>90–100 sq. ft. shadow-free space per kW</b> chahiye hoti hai. Matlab 3kW system ke liye approx 270–300 sq. ft. ki flat, clean rooftop area sufficient hoti hai. Hamari team free site survey ke dauran exact layout batati hai." data-en="Roughly <b>90–100 sq. ft. of shadow-free space per kW</b> is required. This means a 3kW system needs approximately 270–300 sq. ft. of flat, clean rooftop area. Our team will confirm the exact layout during a free site survey.">
           Roughly <b>90–100 sq. ft. shadow-free space per kW</b> chahiye hoti hai. Matlab 3kW system ke liye approx 270–300 sq. ft. ki flat, clean rooftop area sufficient hoti hai. Hamari team free site survey ke dauran exact layout batati hai.
@@ -258,7 +258,7 @@
       <div class="faq-item reveal">
         <button class="faq-q">
           <span><span class="num">10</span><span data-hi="Installation kitne din mein hota hai?" data-en="How many days does installation take?">Installation kitne din mein hota hai?</span></span>
-          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F78" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-hi="Actual physical installation sirf <b>2-3 din</b> mein complete ho jata hai. Uske baad net metering aur subsidy approval ke liye DISCOM process mein typically 2-4 hafte lagte hai — is poore process mein Boston Services Solar aapke saath rehti hai." data-en="The actual physical installation is completed in just <b>2-3 days</b>. After that, the DISCOM process for net metering and subsidy approval typically takes 2-4 weeks — Boston Services Solar stays with you throughout the entire process.">
           Actual physical installation sirf <b>2-3 din</b> mein complete ho jata hai. Uske baad net metering aur subsidy approval ke liye DISCOM process mein typically 2-4 hafte lagte hai — is poore process mein Boston Services Solar aapke saath rehti hai.
