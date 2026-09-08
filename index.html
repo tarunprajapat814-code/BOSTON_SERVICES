@@ -1139,15 +1139,15 @@
       <div class="enquiry-right">
         <h4 data-hi="Book a FREE Visit" data-en="Book a FREE Visit">Book a FREE Visit</h4>
         <p class="enquiry-sub" data-hi="Fill karo, hamari team 24 ghante mein contact karegi." data-en="Fill it in, our team will contact you within 24 hours.">Fill karo, hamari team 24 ghante mein contact karegi.</p>
-        <form onsubmit="event.preventDefault(); alert('Form abhi demo mode mein hai. Neeche diye WhatsApp/Call button se seedha contact kare.');">
-          <div class="form-field"><label data-hi="Full Name" data-en="Full Name">Full Name</label><input type="text" placeholder="Aapka naam" required></div>
+        <form id="enquiryForm" onsubmit="return sendEnquiryToWhatsApp(event)">
+          <div class="form-field"><label data-hi="Full Name" data-en="Full Name">Full Name</label><input type="text" id="enqName" placeholder="Aapka naam" required></div>
           <div class="form-row-2">
-            <div class="form-field"><label data-hi="WhatsApp Number" data-en="WhatsApp Number">WhatsApp Number</label><input type="tel" placeholder="10-digit mobile number" required></div>
-            <div class="form-field"><label data-hi="City" data-en="City">City</label><input type="text" placeholder="Jaipur" required></div>
+            <div class="form-field"><label data-hi="WhatsApp Number" data-en="WhatsApp Number">WhatsApp Number</label><input type="tel" id="enqPhone" placeholder="10-digit mobile number" required></div>
+            <div class="form-field"><label data-hi="City" data-en="City">City</label><input type="text" id="enqCity" placeholder="Jaipur" required></div>
           </div>
           <div class="form-row-2">
-            <div class="form-field"><label data-hi="PIN Code" data-en="PIN Code">PIN Code</label><input type="text" placeholder="302021"></div>
-            <div class="form-field"><label data-hi="Monthly Electricity Bill" data-en="Monthly Electricity Bill">Monthly Electricity Bill</label><input type="text" placeholder="₹ 3,000"></div>
+            <div class="form-field"><label data-hi="PIN Code" data-en="PIN Code">PIN Code</label><input type="text" id="enqPin" placeholder="302021"></div>
+            <div class="form-field"><label data-hi="Monthly Electricity Bill" data-en="Monthly Electricity Bill">Monthly Electricity Bill</label><input type="text" id="enqBill" placeholder="₹ 3,000"></div>
           </div>
           <label class="agree-row">
             <input type="checkbox" required>
@@ -1193,6 +1193,29 @@
 </div>
 
 <script>
+  // ===== Send enquiry form to WhatsApp =====
+  function sendEnquiryToWhatsApp(e){
+    e.preventDefault();
+    const name = document.getElementById('enqName').value.trim();
+    const phone = document.getElementById('enqPhone').value.trim();
+    const city = document.getElementById('enqCity').value.trim();
+    const pin = document.getElementById('enqPin').value.trim();
+    const bill = document.getElementById('enqBill').value.trim();
+
+    let msg = `Hi Boston Services Solar, main solar enquiry ke liye contact kar raha hoon.\n\n`;
+    msg += `Naam: ${name}\n`;
+    msg += `WhatsApp Number: ${phone}\n`;
+    msg += `City: ${city}\n`;
+    if(pin) msg += `PIN Code: ${pin}\n`;
+    if(bill) msg += `Monthly Electricity Bill: ${bill}\n`;
+    msg += `\nPlease mujhe free site survey ke baare mein bataye.`;
+
+    const waNumber = '918875458586';
+    const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    return false;
+  }
+
   // ===== Mobile hamburger menu toggle =====
   (function(){
     const menuBtn = document.querySelector('.menu-btn');
